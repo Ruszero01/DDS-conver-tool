@@ -1,4 +1,5 @@
 import os
+import sys
 import subprocess
 import math
 import threading
@@ -14,7 +15,13 @@ from PIL import Image
 observer_running = False
 observer = None
 image_handler = None
-script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# 获取资源目录路径 - 支持打包和开发两种模式
+try:
+    # 打包后资源在临时目录
+    script_dir = sys._MEIPASS
+except AttributeError:
+    # 开发模式下使用项目根目录
+    script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class ImageHandler(FileSystemEventHandler):
     def __init__(self, observer, delete_source, max_resolution, recursive):
