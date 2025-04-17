@@ -22,7 +22,6 @@
 运行`python src/main.py`直接启动
 或自行打包
 
-
 ## 依赖
 
 - PyQt5
